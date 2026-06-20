@@ -1,8 +1,17 @@
+"use client"; // Wajib ditambahkan karena kita menggunakan hook useRouter
+
 import Image from "next/image";
+import { useRouter } from "next/navigation"; // Import useRouter dari next/navigation
 
 export default function Home() {
+  const router = useRouter(); // Inisialisasi router
+
+  const handleNavigate = () => {
+    router.push("/dashboard"); // Fungsi untuk pindah ke /dashboard
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black min-h-screen">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert"
@@ -34,12 +43,12 @@ export default function Home() {
             center.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row w-full">
+          {/* Mengubah tag <a> menjadi <button> dan menambahkan fungsi onClick */}
+          <button
+            onClick={handleNavigate}
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-black text-white transition-colors hover:bg-[#383838] dark:bg-white dark:text-black dark:hover:bg-[#ccc] md:w-[180px] cursor-pointer"
           >
             <Image
               className="dark:invert"
@@ -48,11 +57,12 @@ export default function Home() {
               width={16}
               height={16}
             />
-            Deploy Now
-          </a>
+            Go to Dashboard
+          </button>
+
           <a
             className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://nextjs.org/docs"
             target="_blank"
             rel="noopener noreferrer"
           >
